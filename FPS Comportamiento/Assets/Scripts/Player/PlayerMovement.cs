@@ -13,9 +13,6 @@ public class PlayerMovement : MonoBehaviour
     private float originalHeight;
     [SerializeField]private float downHeight;
 
-    //private bool doubleJump = true;
-    private bool walljump = false;
-
     //Vector velocidad
     Vector3 velocity;
 
@@ -44,8 +41,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && velocity.y <= 0)
         {
             velocity.y = -2f;
-            //doubleJump = true;
-            walljump = true;
         }
 
         float x = Input.GetAxis("Horizontal");
@@ -55,13 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime); 
 
-        //if (Input.GetButtonDown("Jump") && (isGrounded || doubleJump))
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            //if (!isGrounded)
-            //{
-            //    doubleJump = false;
-            //}
             velocity.y += Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
