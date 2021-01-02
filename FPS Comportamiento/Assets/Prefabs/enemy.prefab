@@ -14,8 +14,11 @@ GameObject:
   - component: {fileID: 8190807539715978021}
   - component: {fileID: 8190807539715978046}
   - component: {fileID: 8453578059862104834}
-  - component: {fileID: 8252932747552399174}
   - component: {fileID: 6649187956760978713}
+  - component: {fileID: 3488159850827262580}
+  - component: {fileID: 7734449275028373508}
+  - component: {fileID: 2963906951122844911}
+  - component: {fileID: 3366716574492304376}
   m_Layer: 10
   m_Name: enemy
   m_TagString: Untagged
@@ -138,23 +141,6 @@ NavMeshAgent:
   m_BaseOffset: 0.99999994
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 3
---- !u!114 &8252932747552399174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8190807539715978020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ee1eeab7bd5e846a3d34da648232c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDetected: 0
-  agent: {fileID: 0}
-  whatIsEnemy:
-    serializedVersion: 2
-    m_Bits: 2871
 --- !u!65 &6649187956760978713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -168,6 +154,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 16, y: 1.9999999, z: 16}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3488159850827262580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190807539715978020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 678b5bd69572af341a0e48bd9dee5da4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CoveringState: {fileID: 0}
+  AttackingState: {fileID: 0}
+  CalmState: {fileID: 0}
+  InitState: {fileID: 0}
+  CurrentState: {fileID: 0}
+--- !u!114 &7734449275028373508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190807539715978020}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1679db83a26e5545a95aa38ac246bef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDetected: 0
+  agent: {fileID: 0}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 2871
+--- !u!114 &2963906951122844911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190807539715978020}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67be2ca86a8f7804dbf2f25778b2ec59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3366716574492304376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8190807539715978020}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87e492e73cc29c448cbfdc11c6cd580, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8190807539920028615
 GameObject:
   m_ObjectHideFlags: 0

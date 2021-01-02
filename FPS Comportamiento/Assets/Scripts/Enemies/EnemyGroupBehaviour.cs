@@ -22,10 +22,9 @@ public class EnemyGroupBehaviour : MonoBehaviour
         {
             foreach (GameObject go in enemies)
             {
-            
-                go.GetComponent<EnemyBehavoiur>().startFight();
+                StateMachine st = go.GetComponent<StateMachine>();
+                st.ActivateState(st.CoveringState);
                 
-            
             }
             fightStarted = true;
         }
