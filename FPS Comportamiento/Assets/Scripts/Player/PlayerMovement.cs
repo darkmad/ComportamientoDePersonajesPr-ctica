@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public GameObject camara;
 
     public CharacterController controller;
     public float gravity = -9.8f;

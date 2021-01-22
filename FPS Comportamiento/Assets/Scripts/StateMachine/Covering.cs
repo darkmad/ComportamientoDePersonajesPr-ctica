@@ -11,24 +11,38 @@ public class Covering : MonoBehaviour
     private GameObject cover;
     public LayerMask whatIsEnemy;
 
+    private StateMachine stateMachine;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         playerHead = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0);
+
+        stateMachine = GetComponent<StateMachine>();
+
         //agent.SetDestination(transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(cover != null)
+        if (cover != null)
+        {
             agent.SetDestination(cover.transform.position);
+            Debug.Log("going cover");
+        }
+        if (covered)
+        {
+            covered = false;
+            stateMachine.ActivateState(stateMachine.AttackingState);           
+        }
     }
 
 
     private void OnTriggerStay(Collider collision)
     {
+        Debug.Log("Dentro del trigger");
         if (!covered && playerHead != null)
         {
             if (collision.gameObject.tag.Equals("Cover"))

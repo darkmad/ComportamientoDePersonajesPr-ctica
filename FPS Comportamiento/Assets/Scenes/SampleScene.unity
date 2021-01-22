@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 929488885}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -832,27 +832,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929488883}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1131442987 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3343986532027265110, guid: 00ff791acf9f2d64fa191240ca5538fc,
-    type: 3}
-  m_PrefabInstance: {fileID: 3343986531945660748}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1131442991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131442987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c000c8cb0e6007f44b77f62bc66104fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 0
-  maxHealth: 0
-  healthBar: {fileID: 586852753}
 --- !u!1001 &1384264012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1024,7 +1003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1477036023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.82, y: 0.26, z: -17.71}
+  m_LocalPosition: {x: 6.2, y: 0.26, z: -15.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2061882754}
@@ -1166,7 +1145,7 @@ GameObject:
   - component: {fileID: 1543508280}
   m_Layer: 8
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1449,6 +1428,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1769079163}
     m_Modifications:
+    - target: {fileID: 3488159850827262580, guid: 55f8f5779c18b0745aab1532e973d352,
+        type: 3}
+      propertyPath: groundDistance
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8190807539715978016, guid: 55f8f5779c18b0745aab1532e973d352,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1514,6 +1498,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 8190807539715978021, guid: 55f8f5779c18b0745aab1532e973d352,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8190807539920028613, guid: 55f8f5779c18b0745aab1532e973d352,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1524,7 +1513,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8190807539715978046, guid: 55f8f5779c18b0745aab1532e973d352, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 55f8f5779c18b0745aab1532e973d352, type: 3}
 --- !u!4 &1930578033 stripped
 Transform:
@@ -2071,6 +2061,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1131442991, guid: 00ff791acf9f2d64fa191240ca5538fc, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 586852753}
     - target: {fileID: 3343986532027265110, guid: 00ff791acf9f2d64fa191240ca5538fc,
         type: 3}
       propertyPath: m_Name

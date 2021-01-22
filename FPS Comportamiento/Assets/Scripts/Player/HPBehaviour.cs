@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class HPBehaviour : MonoBehaviour
 {
     //vida actual
-    public int currentHealth;
+    public float currentHealth;
     //vida maxima
-    public int maxHealth;
+    public float maxHealth;
     //objeto barra de vida
     public GameObject healthBar;
 
@@ -21,12 +21,13 @@ public class HPBehaviour : MonoBehaviour
         bar = healthBar.GetComponent<Scrollbar>();
     }
 
-    public void getDamage(int cantidad)
+    public void getDamage(int amount)
     {
         if(maxHealth > 0)
         {
-            currentHealth = currentHealth -10;
+            currentHealth = currentHealth - amount;
             bar.size = currentHealth / maxHealth;
+            //Debug.Log(currentHealth);
             if (maxHealth <= 0)
             {
                 die();
@@ -35,11 +36,11 @@ public class HPBehaviour : MonoBehaviour
         
     }
 
-    public void getHealth(int cantidad)
+    public void getHealth(int amount)
     {
         if(currentHealth < maxHealth)
         {
-            currentHealth = currentHealth + 10;
+            currentHealth = currentHealth + amount;
             bar.size = currentHealth / maxHealth;
         }
     }

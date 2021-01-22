@@ -10,13 +10,15 @@ public class ShootBehaviour : MonoBehaviour
     public Transform gunEnd;
     public float counter=0;
 
-    public LayerMask whatIsDefault;
-
     private Camera fpsCam;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.7f);
     private AudioSource gunAudio;
     private float nextFire = 0.2f;
 
+    public LayerMask whatToIgnore;
+
+    //Variable para debug
+    Vector3 destino;
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +37,12 @@ public class ShootBehaviour : MonoBehaviour
             Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
 
             RaycastHit hit;
-            if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, weaponRange))
+            
+            if (Physics.Raycast(transform.parent.position, transform.parent.forward, out hit, weaponRange, whatToIgnore))
             {
+                destino = hit.point;
                 Debug.Log("Entra" + hit.collider.gameObject.layer);
-                ShootableEnemy health = hit.collider.GetComponent<ShootableEnemy>();
+                ShootableEnemy health = hit.transform.GetComponent<ShootableEnemy>();
                 if(health != null)
                 {
                     health.Damage(hit.point, gunDamage);
@@ -53,11 +57,6 @@ public class ShootBehaviour : MonoBehaviour
         }
     }
 
-    //private void OnDrawGizmos()
-    //{
-    //    Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-    //    Gizmos.DrawLine(transform.parent.position, transform.parent.position + transform.parent.forward * 10);
-    //}
 
     private  IEnumerator ShotEffect()
     {
