@@ -11,8 +11,11 @@ public class HPBehaviour : MonoBehaviour
     public float maxHealth;
     //objeto barra de vida
     public GameObject healthBar;
-
+    //ui barra de vida
     private Scrollbar bar;
+    //para la recuperacion de vida
+    public float cont = 0;
+    public float timeToHeal = 1.5f;
 
     private void Start()
     {
@@ -20,7 +23,7 @@ public class HPBehaviour : MonoBehaviour
         currentHealth = 100;
         bar = healthBar.GetComponent<Scrollbar>();
     }
-
+    
     public void getDamage(int amount)
     {
         if(maxHealth > 0)
@@ -33,6 +36,7 @@ public class HPBehaviour : MonoBehaviour
                 die();
             }
         }
+        cont = 0;
         
     }
 
@@ -41,7 +45,19 @@ public class HPBehaviour : MonoBehaviour
         if(currentHealth < maxHealth)
         {
             currentHealth = currentHealth + amount;
+            if (currentHealth > maxHealth) { currentHealth = maxHealth; }
             bar.size = currentHealth / maxHealth;
+
+        }
+    }
+
+    private void Update()
+    {
+        cont += Time.deltaTime;
+        if (cont >= timeToHeal)
+        {
+            getHealth(5);
+            cont = 0;
         }
     }
 
