@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Attacking : MonoBehaviour
 {
@@ -12,9 +13,15 @@ public class Attacking : MonoBehaviour
     private float minShootTime = 0.5f;
     private float maxShootTime = 1.5f;
 
+    public NavMeshAgent agent;
+
+    //variables chasePlayer
+    private float leastDistance = 5;
+
     // Start is called before the first frame update
     void Start()
     {
+        agent = GetComponent<NavMeshAgent>();
         stateMachine = GetComponent<StateMachine>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerHP = player.GetComponent<HPBehaviour>();
@@ -41,6 +48,23 @@ public class Attacking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch (agent.agentTypeID)
+        {
+            case 1:
+                chasePlayer();
+                break;
+        }
+    }
+
+    void chasePlayer()
+    {
+        if((player.transform.position - transform.position).magnitude >= leastDistance)
+        {
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            agent.Stop();
+        }
     }
 }

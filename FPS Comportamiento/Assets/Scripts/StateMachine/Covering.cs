@@ -13,6 +13,8 @@ public class Covering : MonoBehaviour
 
     private StateMachine stateMachine;
 
+    private string agentType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,33 +23,46 @@ public class Covering : MonoBehaviour
 
         stateMachine = GetComponent<StateMachine>();
 
+        agentType = NavMesh.GetSettingsNameFromID(agent.agentTypeID);
+        Debug.Log("ID" + agent.agentTypeID);
         //agent.SetDestination(transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cover != null)
+        
+        switch (agentType)
         {
-            agent.SetDestination(cover.transform.position);
-            Debug.Log("going cover");
-        }
-        if (covered)
-        {
-            covered = false;
-            stateMachine.ActivateState(stateMachine.AttackingState);           
+            //enemigo que se cubre
+            case "Humanoid":
+                if (cover != null)
+                {
+                    agent.SetDestination(cover.transform.position);
+                    //Debug.Log("going cover");
+                }
+                if (covered)
+                {
+                    covered = false;
+                    stateMachine.ActivateState(stateMachine.AttackingState);
+                }
+                break;
+            //enemigo que se lanza a atacar
+            case "Agresive":
+                stateMachine.ActivateState(stateMachine.AttackingState);
+                break;
         }
     }
 
 
     private void OnTriggerStay(Collider collision)
     {
-        Debug.Log("Dentro del trigger");
+        //Debug.Log("Dentro del trigger");
         if (!covered && playerHead != null)
         {
             if (collision.gameObject.tag.Equals("Cover"))
             {
-                Debug.Log("Covertura detectada ");
+                //Debug.Log("Covertura detectada ");
                 for (int i = 0; i < collision.gameObject.transform.childCount; i++)
                 {
                     RaycastHit h;
@@ -60,7 +75,7 @@ public class Covering : MonoBehaviour
                         {
                             if (!collision.gameObject.GetComponent<CoverData>().positions[i])
                             {
-                                Debug.Log("Tomo covertura");
+                                //Debug.Log("Tomo covertura");
                                 covered = true;
                                 collision.gameObject.GetComponent<CoverData>().positions[i] = true;
 
