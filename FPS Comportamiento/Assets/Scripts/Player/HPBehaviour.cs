@@ -71,6 +71,7 @@ public class HPBehaviour : MonoBehaviour
         Debug.Log("Death");
         deathMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
+        Time.timeScale = 0;
     }
     
 }
