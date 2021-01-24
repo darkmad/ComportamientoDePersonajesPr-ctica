@@ -14,6 +14,7 @@ public class Attacking : MonoBehaviour
     private float maxShootTime = 1.5f;
 
     public NavMeshAgent agent;
+    private string agentType;
 
     //variables chasePlayer
     private float leastDistance = 5;
@@ -25,6 +26,8 @@ public class Attacking : MonoBehaviour
         stateMachine = GetComponent<StateMachine>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerHP = player.GetComponent<HPBehaviour>();
+
+        agentType = NavMesh.GetSettingsNameFromID(agent.agentTypeID);
 
         Invoke("shoot", Random.Range(minShootTime, maxShootTime));
     }
@@ -48,9 +51,9 @@ public class Attacking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (agent.agentTypeID)
+        switch (agentType)
         {
-            case 1:
+            case "Agresive":
                 chasePlayer();
                 break;
         }
