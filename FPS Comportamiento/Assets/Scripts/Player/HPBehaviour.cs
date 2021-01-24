@@ -7,6 +7,11 @@ public class HPBehaviour : MonoBehaviour
 {
     //vida actual
     public float currentHealth;
+
+    //Referencia al menú de muerte
+    [SerializeField] private GameObject deathMenu;
+    
+
     //vida maxima
     public float maxHealth;
     //objeto barra de vida
@@ -31,7 +36,7 @@ public class HPBehaviour : MonoBehaviour
             currentHealth = currentHealth - amount;
             bar.size = currentHealth / maxHealth;
             //Debug.Log(currentHealth);
-            if (maxHealth <= 0)
+            if (currentHealth <= 0)
             {
                 die();
             }
@@ -63,7 +68,9 @@ public class HPBehaviour : MonoBehaviour
 
     public void die()
     {
-        Debug.Log("Tas muerto");
+        Debug.Log("Death");
+        deathMenu.SetActive(true);
+        Cursor.lockState = CursorLockMode.Confined;
     }
     
 }

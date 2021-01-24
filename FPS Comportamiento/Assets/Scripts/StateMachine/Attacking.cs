@@ -63,11 +63,12 @@ public class Attacking : MonoBehaviour
     {
         if((player.transform.position - transform.position).magnitude >= leastDistance)
         {
+            agent.isStopped = false;
             agent.SetDestination(player.transform.position);
         }
         else
         {
-            agent.Stop();
+            agent.isStopped = true;
         }
     }
 }
