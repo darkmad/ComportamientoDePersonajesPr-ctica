@@ -207,7 +207,7 @@ MonoBehaviour:
   agent: {fileID: 0}
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 2871
+    m_Bits: 2560
 --- !u!114 &2963906951122844911
 MonoBehaviour:
   m_ObjectHideFlags: 0

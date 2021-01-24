@@ -61,7 +61,7 @@ public class HPBehaviour : MonoBehaviour
         cont += Time.deltaTime;
         if (cont >= timeToHeal)
         {
-            getHealth(5);
+            getHealth(20);
             cont = 0;
         }
     }

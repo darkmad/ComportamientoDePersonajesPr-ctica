@@ -51,6 +51,7 @@ public class Attacking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(player.transform);
         switch (agentType)
         {
             case "Agresive":
