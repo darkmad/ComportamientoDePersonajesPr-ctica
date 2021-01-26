@@ -12,14 +12,17 @@ public class Attacking : MonoBehaviour
     private HPBehaviour playerHP;
     public LayerMask whatIsEnemy;
 
-    private float minShootTime = 0.5f;
-    private float maxShootTime = 1.5f;
+    private float meleeAttackCD = 0.6f;
+    private float meleeAttackCount = 0;
+
+    public float minShootTime = 0.5f;
+    public float maxShootTime = 1.5f;
 
     public NavMeshAgent agent;
     private string agentType;
 
     //variables chasePlayer
-    private float leastDistance = 5;
+    public float leastDistance = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +34,9 @@ public class Attacking : MonoBehaviour
 
         agentType = NavMesh.GetSettingsNameFromID(agent.agentTypeID);
 
-        Invoke("shoot", Random.Range(minShootTime, maxShootTime));
+
+        if(!agentType.Equals("Melee"))
+            Invoke("shoot", Random.Range(minShootTime, maxShootTime));
     }
 
 
@@ -46,18 +51,24 @@ public class Attacking : MonoBehaviour
             {
                 playerHP.getDamage(damage);
             }
-            Invoke("shoot", Random.Range(minShootTime, maxShootTime));
+
+            if (!agentType.Equals("Melee"))
+                Invoke("shoot", Random.Range(minShootTime, maxShootTime));
         }
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {      
         transform.LookAt(player.transform);
         switch (agentType)
         {
             case "Agresive":
                 chasePlayer();
+                break;
+            case "Melee":
+                meleeAttackCount += Time.deltaTime;
+                meleeChasePlayer();
                 break;
         }
     }
@@ -72,6 +83,25 @@ public class Attacking : MonoBehaviour
         else
         {
             agent.isStopped = true;
+        }
+    }
+
+    void meleeChasePlayer()
+    {
+        if ((player.transform.position - transform.position).magnitude >= leastDistance)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            agent.isStopped = true;
+
+            if (meleeAttackCount >= meleeAttackCD)
+            {
+                meleeAttackCount = 0;
+                shoot();
+            }
         }
     }
 }

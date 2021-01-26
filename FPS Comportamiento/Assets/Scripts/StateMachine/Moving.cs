@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Covering : MonoBehaviour
+public class Moving : MonoBehaviour
 {
     public Transform playerHead;
     public NavMeshAgent agent;
@@ -49,6 +49,9 @@ public class Covering : MonoBehaviour
                 break;
             //enemigo que se lanza a atacar
             case "Agresive":
+                stateMachine.ActivateState(stateMachine.AttackingState);
+                break;
+            case "Melee":
                 stateMachine.ActivateState(stateMachine.AttackingState);
                 break;
         }

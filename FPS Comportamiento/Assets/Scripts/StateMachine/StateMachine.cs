@@ -8,7 +8,7 @@ public class StateMachine : MonoBehaviour
     private float groundDistance = 0.5f;
     [SerializeField] private LayerMask groundMask;
 
-    [HideInInspector] public MonoBehaviour CoveringState;
+    [HideInInspector] public MonoBehaviour MovingState;
     [HideInInspector] public MonoBehaviour AttackingState;
     [HideInInspector] public MonoBehaviour CalmState;
     [HideInInspector] public MonoBehaviour InitState;
@@ -17,7 +17,7 @@ public class StateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CoveringState = GetComponent<Covering>();
+        MovingState = GetComponent<Moving>();
         AttackingState = GetComponent<Attacking>();
         CalmState = GetComponent<Calm>();
 
