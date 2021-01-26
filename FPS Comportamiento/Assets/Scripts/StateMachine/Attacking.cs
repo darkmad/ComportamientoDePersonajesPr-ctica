@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class Attacking : MonoBehaviour
 {
+    public int damage = 5;
+
     private StateMachine stateMachine;
     private GameObject player;
     private HPBehaviour playerHP;
@@ -42,7 +44,7 @@ public class Attacking : MonoBehaviour
         {
             if (h.transform.gameObject.Equals(player.transform.GetChild(0).gameObject))
             {
-                playerHP.getDamage(2);
+                playerHP.getDamage(damage);
             }
             Invoke("shoot", Random.Range(minShootTime, maxShootTime));
         }
