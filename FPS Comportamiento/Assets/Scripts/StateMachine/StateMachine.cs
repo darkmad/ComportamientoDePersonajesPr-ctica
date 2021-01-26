@@ -8,11 +8,12 @@ public class StateMachine : MonoBehaviour
     private float groundDistance = 0.5f;
     [SerializeField] private LayerMask groundMask;
 
-    [HideInInspector] public MonoBehaviour MovingState;
-    [HideInInspector] public MonoBehaviour AttackingState;
-    [HideInInspector] public MonoBehaviour CalmState;
-    [HideInInspector] public MonoBehaviour InitState;
-    [HideInInspector] public MonoBehaviour CurrentState;
+    //estados de los agentes
+    [HideInInspector] public MonoBehaviour MovingState; //movimiento
+    [HideInInspector] public MonoBehaviour AttackingState; //ataque
+    [HideInInspector] public MonoBehaviour CalmState; //calma
+    [HideInInspector] public MonoBehaviour InitState; //estado inicial
+    [HideInInspector] public MonoBehaviour CurrentState; //estado actual
 
     // Start is called before the first frame update
     void Start()

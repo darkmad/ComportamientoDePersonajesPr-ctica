@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    //controlador del personaje
     public CharacterController controller;
+    //gravedad
     public float gravity = -9.8f;
+    //distancia de salto
     public float jumpHeight = 3f;
 
     private float originalHeight;

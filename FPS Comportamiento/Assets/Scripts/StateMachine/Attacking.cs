@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Attacking : MonoBehaviour
 {
+    //daño base de los enemigos
     public int damage = 5;
 
     private StateMachine stateMachine;
@@ -12,13 +13,17 @@ public class Attacking : MonoBehaviour
     private HPBehaviour playerHP;
     public LayerMask whatIsEnemy;
 
+    //contadores del ataque de melé
     private float meleeAttackCD = 0.6f;
     private float meleeAttackCount = 0;
 
+    //tiempos de intervalo de disparos
     public float minShootTime = 0.5f;
     public float maxShootTime = 1.5f;
 
+    //objeto agente
     public NavMeshAgent agent;
+    //etiqueta del agente
     private string agentType;
 
     //variables chasePlayer
@@ -39,7 +44,7 @@ public class Attacking : MonoBehaviour
             Invoke("shoot", Random.Range(minShootTime, maxShootTime));
     }
 
-
+    //funcion disparo de los enemigos
     private void shoot()
     {
         
@@ -73,6 +78,7 @@ public class Attacking : MonoBehaviour
         }
     }
 
+    //funcion de persecucion enemigo arma de fuego
     void chasePlayer()
     {
         if((player.transform.position - transform.position).magnitude >= leastDistance)
@@ -86,6 +92,7 @@ public class Attacking : MonoBehaviour
         }
     }
 
+    //funcion de persecucion enemigo a melé
     void meleeChasePlayer()
     {
         if ((player.transform.position - transform.position).magnitude >= leastDistance)

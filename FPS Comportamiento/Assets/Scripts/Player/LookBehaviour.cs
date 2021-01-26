@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LookBehaviour : MonoBehaviour
 {
+    //sensibilidad del raton
     public float mouseSensitivity = 500f;
 
     public Transform PlayerBody;

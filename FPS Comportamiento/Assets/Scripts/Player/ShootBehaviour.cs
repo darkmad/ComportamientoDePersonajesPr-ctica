@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class ShootBehaviour : MonoBehaviour
 {
+    //daño del disparo
     public int gunDamage=1;
+    //cadencia de fuego
     public float fireRate = 0.25f;
+    //alcance del disparo
     public float weaponRange = 1000;
     public Transform gunEnd;
     public float counter=0;
 
+    //camara en primera persona
     private Camera fpsCam;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.7f);
     private AudioSource gunAudio;

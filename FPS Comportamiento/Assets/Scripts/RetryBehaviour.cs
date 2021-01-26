@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class RetryBehaviour : MonoBehaviour
 {
-    //control del boton de reinicio
-
-
     //funcion de reinicio
     public void retry()
     {

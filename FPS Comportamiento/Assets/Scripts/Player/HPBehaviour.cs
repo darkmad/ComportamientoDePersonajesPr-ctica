@@ -7,11 +7,8 @@ public class HPBehaviour : MonoBehaviour
 {
     //vida actual
     public float currentHealth;
-
     //Referencia al menú de muerte
     [SerializeField] private GameObject deathMenu;
-    
-
     //vida maxima
     public float maxHealth;
     //objeto barra de vida
@@ -29,6 +26,7 @@ public class HPBehaviour : MonoBehaviour
         bar = healthBar.GetComponent<Scrollbar>();
     }
     
+    //funcion donde restamos vida al jugador
     public void getDamage(int amount)
     {
         if(maxHealth > 0)
@@ -45,6 +43,7 @@ public class HPBehaviour : MonoBehaviour
         
     }
 
+    //funcion de curacion del jugador
     public void getHealth(int amount)
     {
         if(currentHealth < maxHealth)
@@ -66,9 +65,10 @@ public class HPBehaviour : MonoBehaviour
         }
     }
 
+    //funcion de muerte del jugador
     public void die()
     {
-        Debug.Log("Death");
+        //Debug.Log("Death");
         deathMenu.SetActive(true);
         Cursor.lockState = CursorLockMode.Confined;
         Time.timeScale = 0;
