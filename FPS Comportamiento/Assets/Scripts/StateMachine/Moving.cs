@@ -9,6 +9,7 @@ public class Moving : MonoBehaviour
     public NavMeshAgent agent;
     private bool covered = false;
     private GameObject cover;
+    private GameObject player;
     public LayerMask whatIsEnemy;
 
     private StateMachine stateMachine;
@@ -20,6 +21,8 @@ public class Moving : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         playerHead = GameObject.FindGameObjectWithTag("Player").transform.GetChild(0);
+
+        player = GameObject.FindGameObjectWithTag("Player");
 
         stateMachine = GetComponent<StateMachine>();
 
@@ -52,11 +55,24 @@ public class Moving : MonoBehaviour
                 stateMachine.ActivateState(stateMachine.AttackingState);
                 break;
             case "Melee":
-                stateMachine.ActivateState(stateMachine.AttackingState);
+                meleeChasePlayer();
                 break;
         }
     }
 
+    void meleeChasePlayer()
+    {
+        if ((player.transform.position - transform.position).magnitude >= stateMachine.AttackingState.GetComponent<Attacking>().leastDistance)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(player.transform.position);
+        }
+        else
+        {
+            agent.isStopped = true;
+            stateMachine.ActivateState(stateMachine.AttackingState);
+        }
+    }
 
     private void OnTriggerStay(Collider collision)
     {

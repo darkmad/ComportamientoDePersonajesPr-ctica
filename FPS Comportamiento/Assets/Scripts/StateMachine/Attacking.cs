@@ -73,7 +73,18 @@ public class Attacking : MonoBehaviour
                 break;
             case "Melee":
                 meleeAttackCount += Time.deltaTime;
-                meleeChasePlayer();
+                if ((player.transform.position - transform.position).magnitude >= leastDistance)
+                {
+                    stateMachine.ActivateState(stateMachine.MovingState);
+                }
+                else
+                {                    
+                    if (meleeAttackCount >= meleeAttackCD)
+                    {
+                        meleeAttackCount = 0;
+                        shoot();
+                    }
+                }
                 break;
         }
     }
@@ -92,23 +103,23 @@ public class Attacking : MonoBehaviour
         }
     }
 
-    //funcion de persecucion enemigo a melé
-    void meleeChasePlayer()
-    {
-        if ((player.transform.position - transform.position).magnitude >= leastDistance)
-        {
-            agent.isStopped = false;
-            agent.SetDestination(player.transform.position);
-        }
-        else
-        {
-            agent.isStopped = true;
+    ////funcion de persecucion enemigo a melé
+    //void meleeChasePlayer()
+    //{
+    //    if ((player.transform.position - transform.position).magnitude >= leastDistance)
+    //    {
+    //        agent.isStopped = false;
+    //        agent.SetDestination(player.transform.position);
+    //    }
+    //    else
+    //    {
+    //        agent.isStopped = true;
 
-            if (meleeAttackCount >= meleeAttackCD)
-            {
-                meleeAttackCount = 0;
-                shoot();
-            }
-        }
-    }
+    //        if (meleeAttackCount >= meleeAttackCD)
+    //        {
+    //            meleeAttackCount = 0;
+    //            shoot();
+    //        }
+    //    }
+    //}
 }
